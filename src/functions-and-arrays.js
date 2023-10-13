@@ -1,5 +1,6 @@
 // Iteration #1: Find the maximum
 function maxOfTwoNumbers(num1, num2) {
+  // return (num1 > num2) ? num1 : num2;
   if (num1 > num2) {
     return num1;
   } else if (num1 < num2) {
@@ -123,22 +124,7 @@ function avg(mixedArrAvg) {
   if (mixedArrAvg.length === 0) {
     return null;
   }
-  let counter = 0;
-  for (let i = 0; i < mixedArrAvg.length; i++) {
-    if (typeof mixedArrAvg[i] === "string") {
-      counter += mixedArrAvg[i].length;
-    } else if (typeof mixedArrAvg[i] === "boolean" && mixedArrAvg[i] === true) {
-      counter++;
-    } else if (typeof mixedArrAvg[i] === "number") {
-      counter += mixedArrAvg[i];
-    } else if (
-      typeof mixedArrAvg[i] === "array" ||
-      typeof mixedArrAvg[i] === "object"
-    ) {
-      throw new Error("Error message goes here");
-    }
-  }
-  return counter / mixedArrAvg.length;
+  return sum(mixedArrAvg) / mixedArrAvg.length;
 }
 
 // Iteration #5: Unique arrays
@@ -162,9 +148,10 @@ function uniquifyArray(wordsUnique) {
   }
   let uniquify = [];
   for (let i = 0; i < wordsUnique.length; i++) {
-    if (!uniquify.includes(wordsUnique[i])) {
-      uniquify.push(wordsUnique[i]);
-    }
+    // if (!uniquify.includes(wordsUnique[i])) {
+    //   uniquify.push(wordsUnique[i]);
+    // }
+    !uniquify.includes(wordsUnique[i]) ? uniquify.push(wordsUnique[i]) : null;
   }
   return uniquify;
 }
@@ -185,13 +172,7 @@ function doesWordExist(wordsFind, wordToSearch) {
   if (wordsFind.length === 0) {
     return null;
   }
-  let check = true;
-  for (let i = 0; i < wordsFind.length; i++) {
-    if (!wordsFind.includes(wordToSearch)) {
-      return false;
-    }
-  }
-  return true;
+  return wordsFind.includes(wordToSearch);
 }
 
 // Iteration #7: Count repetition
