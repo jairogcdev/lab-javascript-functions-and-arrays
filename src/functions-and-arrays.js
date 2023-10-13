@@ -75,7 +75,6 @@ function sum(mixedArr) {
   }
   return counter;
 }
-console.log(sum(mixedArr));
 
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
@@ -117,7 +116,30 @@ function averageWordLength(wordsArr) {
 }
 
 // Bonus - Iteration #4.1
-function avg() {}
+const mixedArrAvg = [6, 12, "miami", 1, true, "barca", "200", "lisboa", 8, 10];
+
+// should return: 5.7
+function avg(mixedArrAvg) {
+  if (mixedArrAvg.length === 0) {
+    return null;
+  }
+  let counter = 0;
+  for (let i = 0; i < mixedArrAvg.length; i++) {
+    if (typeof mixedArrAvg[i] === "string") {
+      counter += mixedArrAvg[i].length;
+    } else if (typeof mixedArrAvg[i] === "boolean" && mixedArrAvg[i] === true) {
+      counter++;
+    } else if (typeof mixedArrAvg[i] === "number") {
+      counter += mixedArrAvg[i];
+    } else if (
+      typeof mixedArrAvg[i] === "array" ||
+      typeof mixedArrAvg[i] === "object"
+    ) {
+      throw new Error("Error message goes here");
+    }
+  }
+  return counter / mixedArrAvg.length;
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -273,23 +295,35 @@ const matrixTest = [
   [1, 20, 3, 4, 5],
   [1, 4, 3, 4, 5],
 ];
-
+// const matrixTest = [
+//   [1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1],
+//   [1, 1, 1, 1, 1],
+// ];
 function greatestProduct(matrixTest) {
   if (matrixTest.length === 0) {
     return 0;
   }
-  let sum = [];
-  let contador = 0;
-  let a = "";
+  let max = 0;
+  arrayMatrix = [];
+  let lastJ = 0;
   for (let i = 0; i < matrixTest.length; i++) {
     for (let j = 0; j < matrixTest[i].length; j++) {
-      a += matrixTest[i][j];
-      contador++;
+      if (matrixTest[i][j] > max) {
+        max = matrixTest[i][j];
+        lastJ = j;
+      }
     }
-    //sum += matrixTest[i];
+    if (lastJ + 1) {
+      arrayMatrix.push(max);
+    }
+    max = 0;
   }
-  return contador;
+  return arrayMatrix[0] * arrayMatrix[1] * arrayMatrix[2] * arrayMatrix[3];
 }
+
 console.log(greatestProduct(matrixTest));
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
